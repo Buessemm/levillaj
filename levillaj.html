@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Villaj — Il faut tout un village pour grandir et s'épanouir.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2A4A;--navy2:#243555;
+  --coral:#FF6B4A;--coral2:#FF8A6E;
+  --cream:#FDF8F3;--cream2:#F2EBE0;
+  --mid:#4A5568;--light:#8896A7;
+  --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--navy);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1000}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;padding:20px 56px;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(253,248,243,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(27,42,74,.08)}
+.logo{font-family:'Playfair Display',serif;font-size:24px;color:var(--navy);letter-spacing:-.5px}
+.logo span{color:var(--coral)}
+.nav-pill{background:var(--coral);color:white;padding:11px 28px;border-radius:100px;font-size:14px;font-weight:500;border:none;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+.nav-pill:hover{background:var(--navy);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,107,74,.3)}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:80px;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,74,.07) 0%,transparent 70%);pointer-events:none}
+
+.hero-left{padding:80px 48px 80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(27,42,74,.06);border-radius:100px;padding:8px 16px 8px 12px;font-size:12px;font-weight:500;color:var(--navy);letter-spacing:.5px;margin-bottom:36px;width:fit-content;opacity:0;animation:fadeUp .7s ease forwards .2s}
+.eyebrow-dot{width:8px;height:8px;background:var(--coral);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.7}}
+
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,82px);line-height:1.02;color:var(--navy);margin-bottom:20px;opacity:0;animation:fadeUp .8s ease forwards .35s}
+.hero-title .accent{font-style:italic;color:var(--coral)}
+
+.hero-tagline{font-family:'Playfair Display',serif;font-size:clamp(16px,1.8vw,22px);line-height:1.5;color:var(--mid);font-style:italic;margin-bottom:28px;opacity:0;animation:fadeUp .8s ease forwards .45s;font-weight:400}
+
+.hero-sub{font-size:17px;line-height:1.75;color:var(--mid);font-weight:300;max-width:460px;margin-bottom:48px;opacity:0;animation:fadeUp .8s ease forwards .5s}
+.hero-cta{display:flex;gap:16px;align-items:center;opacity:0;animation:fadeUp .8s ease forwards .65s}
+.btn-primary{background:var(--coral);color:white;padding:17px 40px;border-radius:100px;font-size:16px;font-weight:500;border:none;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+.btn-primary:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,74,.25)}
+.btn-text{font-size:14px;color:var(--light);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:4px;font-family:'DM Sans',sans-serif}
+
+/* HERO RIGHT */
+.hero-right{display:flex;align-items:center;justify-content:center;padding:40px;position:relative}
+.phone-mock{width:280px;background:var(--navy);border-radius:40px;padding:20px 16px;box-shadow:0 40px 80px rgba(27,42,74,.25);opacity:0;animation:fadeIn 1s ease forwards .8s}
+.phone-notch{width:80px;height:6px;background:rgba(255,255,255,.15);border-radius:100px;margin:0 auto 20px}
+.phone-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:0 4px}
+.phone-logo{font-family:'Playfair Display',serif;font-size:17px;color:white}
+.phone-day{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:1px}
+.creator-card{background:var(--cream);border-radius:24px;overflow:hidden;margin-bottom:12px}
+.card-today{background:var(--coral);color:white;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:7px 16px;text-align:center}
+.card-body{padding:20px}
+.card-avatar{width:52px;height:52px;border-radius:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:26px;background:#FFE8E3}
+.card-name{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:3px}
+.card-tag{font-size:11px;color:var(--coral);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.card-bio{font-size:13px;line-height:1.6;color:var(--mid);font-weight:300;margin-bottom:16px}
+.card-actions{display:grid;grid-template-columns:1fr 2fr;gap:8px}
+.card-btn{padding:10px;border-radius:100px;font-size:12px;font-weight:500;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
+.card-pass{background:var(--cream2);color:var(--mid)}
+.card-heart{background:var(--coral);color:white}
+.phone-tabs{display:flex;gap:8px;padding:0 4px}
+.phone-tab{flex:1;height:4px;border-radius:100px;background:rgba(255,255,255,.15)}
+.phone-tab.active{background:var(--coral)}
+
+/* STATS */
+.stats-bar{background:var(--navy);padding:40px 80px;display:flex;justify-content:space-around;align-items:center}
+.stat{text-align:center;color:white}
+.stat-num{font-family:'Playfair Display',serif;font-size:40px;font-style:italic;color:var(--coral);line-height:1;margin-bottom:6px}
+.stat-label{font-size:13px;color:rgba(255,255,255,.5);font-weight:300;letter-spacing:.5px}
+.stat-divider{width:1px;height:48px;background:rgba(255,255,255,.1)}
+
+/* SECTIONS */
+.section{padding:120px 80px}
+.section-tag{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--coral);margin-bottom:20px;display:block}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,54px);color:var(--navy);line-height:1.1;margin-bottom:64px;max-width:560px}
+.section-title em{font-style:italic;color:var(--coral)}
+
+/* COMMENT CA MARCHE */
+.how{background:white}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.step{padding:36px 28px;border-radius:24px;background:var(--cream);transition:transform .3s}
+.step:hover{transform:translateY(-6px)}
+.step-num{font-family:'Playfair Display',serif;font-size:60px;font-style:italic;color:rgba(255,107,74,.15);line-height:1;margin-bottom:16px}
+.step-title{font-family:'Playfair Display',serif;font-size:21px;color:var(--navy);margin-bottom:10px}
+.step-text{font-size:15px;line-height:1.75;color:var(--mid);font-weight:300}
+
+/* DIPLOME */
+.diplome{background:var(--cream2)}
+.diplome-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.diplome-text{}
+.diplome-visual{background:var(--navy);border-radius:24px;padding:40px;color:white;position:relative;overflow:hidden}
+.diplome-visual::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,107,74,.1)}
+.progress-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px}
+.creator-row{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.creator-avatar{width:44px;height:44px;border-radius:12px;background:var(--coral);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.creator-info{}
+.creator-info-name{font-family:'Playfair Display',serif;font-size:17px;color:white;margin-bottom:2px}
+.creator-info-cat{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1px}
+.progress-bar-wrap{background:rgba(255,255,255,.1);border-radius:100px;height:8px;margin-bottom:8px;overflow:hidden}
+.progress-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--coral),var(--coral2));width:67%;transition:width 1s ease}
+.progress-numbers{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.4)}
+.diploma-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,74,.15);border:1px solid rgba(255,107,74,.3);border-radius:100px;padding:8px 16px;font-size:12px;color:var(--coral);margin-top:20px}
+
+/* CATEGORIES */
+.categories{background:white}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.cat-item{background:var(--cream2);border-radius:16px;padding:24px 20px;transition:all .3s;cursor:pointer}
+.cat-item:hover{background:var(--navy);transform:translateY(-4px)}
+.cat-item:hover .cat-name{color:var(--cream)}
+.cat-emoji{font-size:28px;margin-bottom:10px;display:block}
+.cat-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);transition:color .3s}
+
+/* CREATEURS */
+.creators{background:var(--cream)}
+.creators-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.promise-list{display:flex;flex-direction:column;gap:24px}
+.promise-item{display:flex;gap:18px;align-items:flex-start}
+.promise-icon{width:46px;height:46px;background:var(--navy);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.promise-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:5px}
+.promise-text{font-size:14px;line-height:1.7;color:var(--mid);font-weight:300}
+.pricing-card{background:var(--navy);border-radius:28px;padding:44px 36px;color:white;position:relative;overflow:hidden}
+.pricing-card::before{content:'';position:absolute;top:-80px;right:-80px;width:200px;height:200px;border-radius:50%;background:rgba(255,107,74,.08)}
+.pricing-badge{display:inline-block;background:var(--coral);color:white;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:24px;font-weight:500}
+.pricing-amount{font-family:'Playfair Display',serif;font-size:68px;font-style:italic;color:white;line-height:1;margin-bottom:6px}
+.pricing-period{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:32px}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.pricing-features li{display:flex;align-items:center;gap:12px;font-size:15px;color:rgba(255,255,255,.8);font-weight:300}
+.check{width:22px;height:22px;background:var(--coral);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.pricing-cta{width:100%;background:var(--coral);color:white;padding:17px;border-radius:100px;font-size:16px;font-weight:500;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .3s}
+.pricing-cta:hover{background:var(--coral2);transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,74,.3)}
+
+/* INSCRIPTION */
+.inscription{background:var(--navy);padding:120px 80px;text-align:center;position:relative;overflow:hidden}
+.inscription::before{content:'LE VILLAJ';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:20vw;font-weight:700;color:rgba(255,255,255,.025);white-space:nowrap;pointer-events:none;letter-spacing:8px}
+.ins-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.ins-title{font-family:'Playfair Display',serif;font-size:clamp(38px,5vw,60px);color:white;line-height:1.1;margin-bottom:16px}
+.ins-title em{font-style:italic;color:var(--coral)}
+.ins-sub{font-size:17px;color:rgba(255,255,255,.5);font-weight:300;margin-bottom:48px;line-height:1.7}
+.ins-form{display:flex;flex-direction:column;gap:12px;max-width:480px;margin:0 auto 20px}
+.ins-input{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:16px 22px;font-family:'DM Sans',sans-serif;font-size:15px;color:white;border-radius:14px;outline:none;transition:border-color .3s;font-weight:300}
+.ins-input::placeholder{color:rgba(255,255,255,.3)}
+.ins-input:focus{border-color:var(--coral)}
+.ins-row{display:grid;grid-template-columns:1fr auto;gap:12px}
+.ins-submit{background:var(--coral);color:white;border:none;padding:16px 28px;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .3s}
+.ins-submit:hover{background:var(--coral2);transform:translateY(-1px)}
+.ins-note{font-size:12px;color:rgba(255,255,255,.25);letter-spacing:.3px}
+
+footer{background:#111D33;padding:36px 80px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06)}
+.footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:white}
+.footer-logo span{color:var(--coral)}
+.footer-text{font-size:12px;color:rgba(255,255,255,.2)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding:60px 28px}
+  .hero-right{padding:40px 28px}
+  .stats-bar{padding:40px 28px;flex-wrap:wrap;gap:32px}
+  .stat-divider{display:none}
+  .section{padding:80px 28px}
+  .steps{grid-template-columns:1fr;gap:20px}
+  .diplome-inner,.creators-inner{grid-template-columns:1fr;gap:48px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .inscription{padding:80px 28px}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Le <span>Villaj</span></div>
+  <button class="nav-pill" onclick="document.querySelector('.inscription').scrollIntoView({behavior:'smooth'})">Je suis créateur →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Lancement · 2026</div>
+    <h1 class="hero-title">Il faut tout un<br><span class="accent">village.</span></h1>
+    <p class="hero-tagline">Pour grandir et s'épanouir.</p>
+    <p class="hero-sub">Une app qui présente un créateur humain par jour. Pas l'algorithme qui décide. Le hasard. Une vraie rencontre, chaque matin.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.querySelector('.inscription').scrollIntoView({behavior:'smooth'})">Rejoindre en fondateur</button>
+      <button class="btn-text" onclick="document.querySelector('#how').scrollIntoView({behavior:'smooth'})">Comment ça marche</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="phone-mock">
+      <div class="phone-notch"></div>
+      <div class="phone-header">
+        <div class="phone-logo">Le Villaj</div>
+        <div class="phone-day">Aujourd'hui</div>
+      </div>
+      <div class="creator-card">
+        <div class="card-today">Découverte du jour</div>
+        <div class="card-body">
+          <div class="card-avatar">🎙️</div>
+          <div class="card-name">Aïcha K.</div>
+          <div class="card-tag">Finance · Paris</div>
+          <p class="card-bio">J'explique la finance sans jargon. Sans condescendance. Pour ceux qu'on a oubliés.</p>
+          <div class="card-actions">
+            <button class="card-btn card-pass">Passer</button>
+            <button class="card-btn card-heart">❤ Suivre</button>
+          </div>
+        </div>
+      </div>
+      <div class="phone-tabs">
+        <div class="phone-tab active"></div>
+        <div class="phone-tab"></div>
+        <div class="phone-tab"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">1</div><div class="stat-label">Créateur par jour</div></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><div class="stat-num">60"</div><div class="stat-label">Pour te présenter</div></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><div class="stat-num">0</div><div class="stat-label">Algorithme. Zéro.</div></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Catégories</div></div>
+</div>
+
+<!-- COMMENT CA MARCHE -->
+<section class="section how" id="how">
+  <span class="section-tag reveal">Comment ça marche</span>
+  <h2 class="section-title reveal">Simple comme une <em>vraie rencontre.</em></h2>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Tu crées ton profil</div>
+      <p class="step-text">Une vidéo de 30 secondes. Tes mots. Ton lien. Pas de budget production. Juste toi, comme tu es.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Tu entres dans la rotation</div>
+      <p class="step-text">Le hasard décide quand et à qui tu es présenté. Pas ton nombre de followers. Pas ton budget. La rotation est équitable pour tout le monde.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Tu grandis avec ta communauté</div>
+      <p class="step-text">Chaque cœur reçu fait avancer ta barre vers ton objectif de diplôme. Quand tu l'atteins — tu es célébré(e) et tu continues ailleurs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LE DIPLOME -->
+<section class="section diplome">
+  <div class="diplome-inner">
+    <div class="diplome-text">
+      <span class="section-tag reveal">Le mécanisme unique</span>
+      <h2 class="section-title reveal" style="margin-bottom:24px">Chaque créateur a<br>un <em>objectif.</em></h2>
+      <p class="reveal" style="font-size:16px;line-height:1.8;color:var(--mid);font-weight:300;margin-bottom:20px">Tu entres sur Le Villaj avec un objectif affiché — atteindre un seuil de découvertes communautaires. La communauté te voit progresser. Chaque cœur donné fait avancer ta barre.</p>
+      <p class="reveal" style="font-size:15px;font-style:italic;color:var(--coral)">Le Villaj est ton incubateur. Pas ta prison.</p>
+    </div>
+    <div class="diplome-visual reveal">
+      <div class="progress-label">Progression vers le diplôme</div>
+      <div class="creator-row">
+        <div class="creator-avatar">🍕</div>
+        <div class="creator-info">
+          <div class="creator-info-name">Marie L.</div>
+          <div class="creator-info-cat">Food · Paris · 4 mois</div>
+        </div>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill"></div></div>
+      <div class="progress-numbers"><span>10 050 découvertes</span><span>Objectif : 15 000</span></div>
+      <div class="diploma-badge">🎓 67% — Continue comme ça !</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section categories">
+  <span class="section-tag reveal">Les univers</span>
+  <h2 class="section-title reveal">Quel monde veux-tu<br><em>rejoindre ?</em></h2>
+  <div class="cat-grid">
+    <div class="cat-item reveal"><span class="cat-emoji">🍕</span><div class="cat-name">Food</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">✈️</span><div class="cat-name">Voyage</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">💰</span><div class="cat-name">Finance</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">👨‍👩‍👧</span><div class="cat-name">Parentalité</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">👗</span><div class="cat-name">Mode</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">💄</span><div class="cat-name">Make-up</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">🔧</span><div class="cat-name">Mécanique</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">💪</span><div class="cat-name">Sport</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">♟️</span><div class="cat-name">Sport cérébral</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">🎭</span><div class="cat-name">Culture</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">📚</span><div class="cat-name">Histoire</div></div>
+    <div class="cat-item reveal"><span class="cat-emoji">🌍</span><div class="cat-name">Univers Afro</div></div>
+  </div>
+</section>
+
+<!-- CREATEURS -->
+<section class="section creators">
+  <div class="creators-inner">
+    <div>
+      <span class="section-tag reveal">Pourquoi Le Villaj</span>
+      <h2 class="section-title reveal">L'algorithme ne te verra <em>jamais.</em><br>Nous, si.</h2>
+      <div class="promise-list">
+        <div class="promise-item reveal">
+          <div class="promise-icon">🎯</div>
+          <div>
+            <div class="promise-title">La rotation équitable</div>
+            <p class="promise-text">Peu importe ce que tu as ailleurs. Ici tout le monde repart de zéro. Le hasard te présente — pas ton budget.</p>
+          </div>
+        </div>
+        <div class="promise-item reveal">
+          <div class="promise-icon">🏆</div>
+          <div>
+            <div class="promise-title">Un objectif clair</div>
+            <p class="promise-text">Tu sais exactement où tu vas. Chaque cœur reçu te rapproche de ton diplôme. La communauté participe à ta réussite.</p>
+          </div>
+        </div>
+        <div class="promise-item reveal">
+          <div class="promise-icon">🔗</div>
+          <div>
+            <div class="promise-title">Ta vitrine, ton tremplin</div>
+            <p class="promise-text">Le Villaj t'envoie vers tes vraies plateformes. Chaque personne qui te suit t'a vraiment choisi(e).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="pricing-badge">Tarif créateur</div>
+      <div class="pricing-amount">10€</div>
+      <div class="pricing-period">par mois · sans engagement</div>
+      <ul class="pricing-features">
+        <li><div class="check">✓</div>Profil complet avec vidéo 30s</li>
+        <li><div class="check">✓</div>Rotation quotidienne équitable</li>
+        <li><div class="check">✓</div>Barre de progression vers le diplôme</li>
+        <li><div class="check">✓</div>Dashboard minimaliste</li>
+        <li><div class="check">✓</div>Lien vers toutes tes plateformes</li>
+        <li><div class="check">✓</div><strong>Gratuit pour les fondateurs</strong></li>
+      </ul>
+      <button class="pricing-cta" onclick="document.querySelector('.inscription').scrollIntoView({behavior:'smooth'})">Devenir fondateur — Gratuit</button>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPTION -->
+<section class="inscription">
+  <div class="ins-inner">
+    <h2 class="ins-title reveal">Rejoins le <em>village.</em></h2>
+    <p class="ins-sub reveal">Tu crées du contenu. Le Villaj te présente. Les fondateurs accèdent gratuitement et en avant-première.</p>
+    <div class="ins-form reveal">
+      <input type="text" class="ins-input" placeholder="Ton prénom" id="insName">
+      <div class="ins-row">
+        <input type="email" class="ins-input" placeholder="Ton email" id="insEmail">
+        <button class="ins-submit" onclick="handleSubmit()">Rejoindre →</button>
+      </div>
+      <input type="text" class="ins-input" placeholder="Ta catégorie principale (food, finance, sport…)" id="insCat">
+    </div>
+    <p class="ins-note reveal">Réservé aux créateurs · Aucun spam · Accès avant lancement officiel</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Le <span>Villaj</span></div>
+  <div class="footer-text">© 2026 Le Villaj · Mentions légales · Confidentialité</div>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80)});
+},{threshold:.1});
+reveals.forEach(el=>obs.observe(el));
+
+function handleSubmit(){
+  const email=document.getElementById('insEmail').value;
+  if(!email)return;
+  const btn=document.querySelector('.ins-submit');
+  btn.textContent='✓ Inscrit !';
+  btn.style.background='#243555';
+  setTimeout(()=>{
+    btn.textContent='Rejoindre →';btn.style.background='';
+    ['insEmail','insName','insCat'].forEach(id=>document.getElementById(id).value='');
+  },3000);
+}
+</script>
+</body>
+</html>
